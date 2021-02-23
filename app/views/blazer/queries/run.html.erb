@@ -111,7 +111,7 @@
     <% elsif chart_type == "pie" %>
       <%= pie_chart @rows.map { |r| [(@boom[@columns[0]] || {})[r[0].to_s] || r[0], r[1]] }, **chart_options %>
     <% elsif chart_type == "bar" %>
-      <%= column_chart (values.size - 1).times.map { |i| name = @columns[i + 1]; {name: blazer_series_name(name), data: @rows.first(20).map { |r| [(@boom[@columns[0]] || {})[r[0].to_s] || r[0], r[i + 1]] } } }, **chart_options %>
+      <%= column_chart (values.size - 1).times.map { |i| name = @columns[i + 1]; {name: blazer_series_name(name), data: @rows.map { |r| [(@boom[@columns[0]] || {})[r[0].to_s] || r[0], r[i + 1]] } } }, **chart_options %>
     <% elsif chart_type == "bar2" %>
       <% first_20 = @rows.group_by { |r| r[0] }.values.first(20).flatten(1) %>
       <% labels = first_20.map { |r| r[0] }.uniq %>
